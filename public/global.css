@@ -1,0 +1,42 @@
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	height: 100vh;
+	font-family: 'Source Sans Pro', sans-serif;
+	line-height: 1.2em;
+	background: rgb(40, 48, 56);
+	background: radial-gradient(circle, rgba(40, 48, 56, 1) 0%, #282c34 100%);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #dce4ec;
+}
+
+
+.btn {
+	color: inherit;
+	cursor: pointer;
+	font-size: 15px;
+	padding: 10px 12px;
+	border-radius: 2em;
+	background: none;
+	border: 0px solid;
+	transition: 250ms ease-out;
+}
+
+.btn:hover {
+	background: #1d2025;
+}
+
+.btn:focus {
+	outline: none;
+}
+
+.btn-delete {
+	color: #666;
+	font-size: 0.7em;
+}
