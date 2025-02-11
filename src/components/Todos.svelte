@@ -1,12 +1,16 @@
 <script>
-    import Todo from "./Todo.svelte";
+  import Todo from "./Todo.svelte";
+
+  export let todos;
 </script>
 
 <div class="app-body">
   <ul>
     
-    <Todo />
-    
+      {#each todos as todo }
+        <Todo itemText = {todo.itemText} completed = { todo.completed } />
+      {/each}
+
   </ul>
 </div>
 
@@ -21,5 +25,4 @@
     max-height: 600px;
     overflow-x: hidden;
   }
-
 </style>

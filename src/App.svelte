@@ -2,6 +2,16 @@
   import Footer from "./components/Footer.svelte";
   import Header from "./components/Header.svelte";
   import Todos from "./components/Todos.svelte";
+
+  const todos = [{
+    itemText: "First Item",
+    completed: false,
+  },
+  {
+    itemText: "Second Item",
+    completed: true,
+  }
+  ];
 </script>
 
 <div id="app-container" class="app-container">
@@ -9,7 +19,7 @@
   <Header />
   <!-- List of actual todos -->
 
-  <Todos />
+  <Todos todos = {todos}/>
   <!-- Add form at bottom -->
   <Footer />
 </div>
