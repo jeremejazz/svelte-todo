@@ -4,11 +4,7 @@
 
   export let todos;
 
-  const dispatch = createEventDispatcher();
-  const forward = (event) => {
  
-    dispatch("completed", event.detail);
-  };
 </script>
 
 <div class="app-body">
@@ -18,7 +14,8 @@
         itemId={todo.id}
         itemText={todo.itemText}
         completed={todo.completed}
-        on:completed={forward}
+        on:completed
+ 
       />
     {/each}
   </ul>

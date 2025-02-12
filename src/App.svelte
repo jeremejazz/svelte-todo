@@ -18,7 +18,7 @@
 
   const onComplete = (event) => {
     const updateId = event.detail.id;
- 
+    console.log("event", event);
     todos.every((todo)=>{
       
       if(todo.id === updateId) {
