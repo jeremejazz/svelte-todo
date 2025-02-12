@@ -3,15 +3,34 @@
   import Header from "./components/Header.svelte";
   import Todos from "./components/Todos.svelte";
 
-  const todos = [{
+  let todos = [{
+    id: 1,
     itemText: "First Item",
     completed: false,
   },
   {
+    id: 2,
     itemText: "Second Item",
     completed: true,
   }
   ];
+
+
+  const onComplete = (event) => {
+    const updateId = event.detail.id;
+ 
+    todos.every((todo)=>{
+      
+      if(todo.id === updateId) {
+        todo.completed = !todo.completed;
+        return false;
+      }
+      return true;
+    });
+
+    todos = todos; // TODO needs revision 
+  };  
+
 </script>
 
 <div id="app-container" class="app-container">
@@ -19,7 +38,7 @@
   <Header />
   <!-- List of actual todos -->
 
-  <Todos todos = {todos}/>
+  <Todos todos = {todos} on:completed = {onComplete} />
   <!-- Add form at bottom -->
   <Footer />
 </div>

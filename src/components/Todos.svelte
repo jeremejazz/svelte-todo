@@ -1,16 +1,26 @@
 <script>
+  import { createEventDispatcher } from "svelte";
   import Todo from "./Todo.svelte";
 
   export let todos;
+
+  const dispatch = createEventDispatcher();
+  const forward = (event) => {
+ 
+    dispatch("completed", event.detail);
+  };
 </script>
 
 <div class="app-body">
   <ul>
-    
-      {#each todos as todo }
-        <Todo itemText = {todo.itemText} completed = { todo.completed } />
-      {/each}
-
+    {#each todos as todo}
+      <Todo
+        itemId={todo.id}
+        itemText={todo.itemText}
+        completed={todo.completed}
+        on:completed={forward}
+      />
+    {/each}
   </ul>
 </div>
 
