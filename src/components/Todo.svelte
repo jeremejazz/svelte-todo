@@ -5,6 +5,7 @@
   export let itemText;
   export let completed;
 
+  
   let dispatch = createEventDispatcher();
 
   const clickComplete = (id) => {

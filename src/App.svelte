@@ -36,6 +36,27 @@
 
     todos = todos; // TODO needs revision
   };
+
+  const addTodo = (event) => {
+    const itemText = event.detail.text;
+    const id = nextTodoId();
+    todos.push({
+      id,
+      itemText,
+      completed: false,
+    })
+
+    todos = todos;
+  }
+
+  const nextTodoId  = () => {
+    if (todos.length === 0){
+      return 1;
+    }
+    return todos[todos.length - 1].id + 1;
+  }
+
+ 
 </script>
 
 <div id="app-container" class="app-container">
@@ -45,7 +66,7 @@
 
   <Todos {todos} on:completed={onComplete} />
   <!-- Add form at bottom -->
-  <Footer />
+  <Footer on:addTodo={addTodo} />
 </div>
 
 <style>
