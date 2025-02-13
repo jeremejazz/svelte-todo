@@ -3,49 +3,52 @@
   import Header from "./components/Header.svelte";
   import Todos from "./components/Todos.svelte";
 
-  let todos = [{
-    id: 1,
-    itemText: "First Item",
-    completed: false,
-  },
-  {
-    id: 2,
-    itemText: "Second Item",
-    completed: true,
-  }
+  let todos = [
+    {
+      id: 1,
+      itemText: "First Item",
+      completed: false,
+    },
+    {
+      id: 2,
+      itemText: "Second Item",
+      completed: true,
+    },
   ];
 
+  let totalCount;
+
+
+  let remainingCount;
+  $: totalCount = todos.length;
+  $: remainingCount = todos.filter((todo) => !todo.completed).length;
 
   const onComplete = (event) => {
     const updateId = event.detail.id;
     console.log("event", event);
-    todos.every((todo)=>{
-      
-      if(todo.id === updateId) {
+    todos.every((todo) => {
+      if (todo.id === updateId) {
         todo.completed = !todo.completed;
         return false;
       }
       return true;
     });
 
-    todos = todos; // TODO needs revision 
-  };  
-
+    todos = todos; // TODO needs revision
+  };
 </script>
 
 <div id="app-container" class="app-container">
   <!-- Header with information -->
-  <Header />
+  <Header {totalCount} {remainingCount} />
   <!-- List of actual todos -->
 
-  <Todos todos = {todos} on:completed = {onComplete} />
+  <Todos {todos} on:completed={onComplete} />
   <!-- Add form at bottom -->
   <Footer />
 </div>
 
 <style>
- 
-
   .app-container {
     width: 400px;
     min-height: 500px;
@@ -60,10 +63,7 @@
     justify-content: space-between;
   }
 
-
   ::placeholder {
     opacity: 0.3;
   }
-
-
 </style>
