@@ -13,6 +13,12 @@
       id,
     });
   };
+
+  const clickDelete = (id) => {
+    dispatch("deleted", {
+      id,
+    })
+  }
 </script>
 
 <li class="todo-list list-item-view {completed ? 'completed' : ''}">
@@ -23,7 +29,7 @@
     ></button>
     <span>{itemText}</span>
   </span>
-  <button class="btn btn-delete fa-solid fa-trash"></button>
+  <button class="btn btn-delete fa-solid fa-trash" on:click={ () => clickDelete(itemId)}></button>
 </li>
 
 <style>

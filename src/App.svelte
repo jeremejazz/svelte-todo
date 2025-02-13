@@ -1,5 +1,5 @@
 <script>
-  import Footer from "./components/Footer.svelte";
+  import Form from "./components/Form.svelte";
   import Header from "./components/Header.svelte";
   import Todos from "./components/Todos.svelte";
 
@@ -17,7 +17,7 @@
   ];
 
   let totalCount;
-
+  let inputText;
 
   let remainingCount;
   $: totalCount = todos.length;
@@ -25,7 +25,7 @@
 
   const onComplete = (event) => {
     const updateId = event.detail.id;
-    console.log("event", event);
+
     todos.every((todo) => {
       if (todo.id === updateId) {
         todo.completed = !todo.completed;
@@ -38,25 +38,34 @@
   };
 
   const addTodo = (event) => {
-    const itemText = event.detail.text;
     const id = nextTodoId();
-    todos.push({
-      id,
-      itemText,
-      completed: false,
-    })
+    console.log(id);
+    if (inputText === "") {
+      return;
+    }
+    todos = [
+      ...todos,
+      {
+        id,
+        itemText: inputText.trim(),
+        completed: false,
+      },
+    ];
+  };
 
-    todos = todos;
-  }
-
-  const nextTodoId  = () => {
-    if (todos.length === 0){
+  const nextTodoId = () => {
+    if (todos.length === 0) {
       return 1;
     }
-    return todos[todos.length - 1].id + 1;
-  }
+    return Math.max(...todos.map((todo) => todo.id)) + 1;
+  };
 
- 
+  const onDelete = (event) => {
+    const deleteId = event.detail.id;
+
+    todos = todos.filter((todo) => todo.id !== deleteId);
+
+  };
 </script>
 
 <div id="app-container" class="app-container">
@@ -64,9 +73,9 @@
   <Header {totalCount} {remainingCount} />
   <!-- List of actual todos -->
 
-  <Todos {todos} on:completed={onComplete} />
+  <Todos {todos} on:completed={onComplete} on:deleted = {onDelete} />
   <!-- Add form at bottom -->
-  <Footer on:addTodo={addTodo} />
+  <Form on:addTodo={addTodo} bind:inputText />
 </div>
 
 <style>

@@ -1,7 +1,7 @@
 <script>
   import { createEventDispatcher } from "svelte";
 
-  let inputText = "";
+  export let inputText = "";
 
   const dispatch = createEventDispatcher();
   // enter and button
@@ -10,9 +10,7 @@
    * @param text string
    */
   const addTodo = (text) => {
-    dispatch("addTodo", {
-      text,
-    });
+    dispatch("addTodo");
     
     inputText = "";
   };
