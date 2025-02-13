@@ -1,6 +1,7 @@
 # Svelte Todo App
 
->Note: This App was created based on the online course [Svelte Crash Course through Projects w/ Backend Connections](https://www.udemy.com/course/svelte-crash-course-through-projects-w-backend-connections) for learning purposes. 
+>Note: This App was created based on the online course [Svelte Crash Course through Projects w/ Backend Connections](https://www.udemy.com/course/svelte-crash-course-through-projects-w-backend-connections) for learning purposes.  
+Svelve version is outdated since the tutorial is being followed here. 
 
 ----
 
